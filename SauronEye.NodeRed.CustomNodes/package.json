@@ -1,0 +1,34 @@
+{
+  "name": "custom-nodes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node-red --settings src/settings.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-red": "^1.2.7",
+    "node-red-dashboard": "^2.27.0",
+    "node-red-kross-api-entrance": "file:src/custom-nodes/api-entrance",
+    "node-red-kross-atualizar-taylor": "file:src/custom-nodes/atualizar-taylor",
+    "node-red-kross-definir-prioridade": "file:src/custom-nodes/definir-prioridade",
+    "node-red-kross-encerrar-incidente": "file:src/custom-nodes/encerrar-incidente",
+    "node-red-kross-enviar-notificacao": "file:src/custom-nodes/enviar-notificacao",
+    "node-red-kross-enviar-teams": "file:src/custom-nodes/enviar-teams",
+    "node-red-kross-hub-acoes": "file:src/custom-nodes/hub-acoes",
+    "node-red-kross-log-db": "file:src/custom-nodes/log-db",
+    "node-red-kross-resolveu": "file:src/custom-nodes/resolveu",
+    "node-red-kross-timer-tma": "file:src/custom-nodes/timer-tma",
+    "node-red-kross-telegram": "file:src/custom-nodes/telegram",
+    "node-red-kross-log-kibana": "file:src/custom-nodes/log-kibana",
+    "node-red-kross-enviar-e-mail": "file:src/custom-nodes/enviar-e-mail",
+    "node-red-kross-enviar-sms": "file:src/custom-nodes/enviar-sms",
+    "node-red-kross-horario-comercial": "file:src/custom-nodes/horario-comercial"
+  },
+  "devDependencies": {
+    "node-red-nodegen": "^0.1.0"
+  }
+}

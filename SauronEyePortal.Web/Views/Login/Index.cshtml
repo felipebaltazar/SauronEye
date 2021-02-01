@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Sauron Eye Portal</title>
+    <link rel="apple-touch-icon" href="https://media2.giphy.com/media/vRsbG0Z1CY0i4/giphy.gif">
+    <link rel="shortcut icon" href="https://media2.giphy.com/media/vRsbG0Z1CY0i4/giphy.gif">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/dist/css/main.d60589fc7c3d890b6249.css" rel="stylesheet">
+</head>
+<body id="pagina-login">
+    @using (Html.BeginForm("Autenticate", "Login", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        <div id="imagem-fundo">
+        </div>
+        <div class="conteudo">
+            <div class="container-fluid" style="margin: 25vh auto 0;">
+                <div id="card-login" class="mx-auto card-5">
+                    <h1>Login</h1>
+                    <form id="account" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input name="email" type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp" placeholder="exemplo@email.com.br">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Senha</label>
+                            <input name="password" type="password" class="form-control" id="senhaLogin" placeholder="********">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Manter a minha sessão</label>
+                            <small id="emailHelp" class="form-text text-muted">Não assinalar em dispositívos públicos</small>
+                        </div>
+                        @*<a href="/home" class="btn btn-primary btn-lg btn-block">Entrar</a>*@
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+                        <div class="justify-content-center align-items-center">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                        <div style="height:20px;">
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-link btn-block">Esqueci minha senha</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    }
+    <script type="text/javascript" src="~/dist/main.js"></script>
+</body>
+</html>
+
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

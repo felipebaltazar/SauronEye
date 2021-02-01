@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Saruman.Pages.DashboardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Saruman.Models"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:vm="clr-namespace:Saruman.ViewModels"
+    x:Name="this"
+    x:DataType="vm:DashboardViewModel"
+    BackgroundColor="{StaticResource Color.Background}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid
+            Padding="0,24,0,0"
+            ColumnDefinitions="*, 44"
+            RowDefinitions="30, *"
+            RowSpacing="36">
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalTextAlignment="Center"
+                InputTransparent="True"
+                Style="{StaticResource Title}"
+                Text="{Binding ListTitle}" />
+            <CollectionView
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0"
+                IsVisible="{Binding ShowIncidents}"
+                ItemsSource="{Binding Incidents}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Incident">
+                        <Grid
+                            Padding="0"
+                            ColumnDefinitions="64, *, 70"
+                            ColumnSpacing="8"
+                            HeightRequest="64"
+                            RowDefinitions="3*, 2*"
+                            RowSpacing="0">
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                BackgroundColor="{Binding Priority, Converter={StaticResource PriorityToColor}}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource PriorityShort}"
+                                Text="{Binding Priority}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Style="{StaticResource TitleSmall}"
+                                Text="{Binding Title}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1"
+                                Style="{StaticResource DescriptionSmall}"
+                                Text="{Binding Description}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Style="{StaticResource DescriptionSmall}"
+                                Text="{Binding RegisteredAt, StringFormat='{0:dd/MM/yy}'}"
+                                VerticalTextAlignment="End" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Style="{StaticResource DescriptionSmall}"
+                                Text="{Binding RegisteredAt, StringFormat='{}{0:hh:mm}'}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.IncidentClickedCommand}" CommandParameter="{Binding}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

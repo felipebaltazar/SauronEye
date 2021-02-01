@@ -1,0 +1,53 @@
+{
+  "name": "sauroneyeportal.web",
+  "version": "1.0.0",
+  "description": "sauroneye",
+  "main": "index.js",
+  "scripts": {
+    "test": "run",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dev.azure.com/krossmasters-hackaton/_git/Krossmasters.SauronEye"
+  },
+  "keywords": [
+    "sauron"
+  ],
+  "author": "krossmasters",
+  "license": "MIT",
+  "dependencies": {
+    "http": "0.0.1-security",
+    "http-server": "^0.12.3"
+  },
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ],
+  "devDependencies": {
+    "@feathersjs/express": "^4.5.11",
+    "child_process": "^1.0.2",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-uglify": "^3.0.2",
+    "jquery": "^3.5.1",
+    "node-red": "^1.2.7",
+    "rimraf": "^3.0.2",
+    "node-red-kross-definir-prioridade": "file:../SauronEye.NodeRed.CustomNodes/src/custom-nodes/definir-prioridade",
+    "node-red-kross-enviar-notificacao": "file:../SauronEye.NodeRed.CustomNodes/src/custom-nodes/enviar-notificacao",
+    "node-red-kross-hub-acoes": "file:../SauronEye.NodeRed.CustomNodes/src/custom-nodes/hub-acoes",
+    "node-red-kross-timer-tma": "file:../SauronEye.NodeRed.CustomNodes/src/custom-nodes/timer-tma",
+    "node-red-kross-horario-comercial": "file:../SauronEye.NodeRed.CustomNodes/src/custom-nodes/horario-comercial"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "node-red-kross-horario-comercial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "horario-comercial.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "horario-comercial"
+  ],
+  "node-red": {
+    "nodes": {
+      "push-notification": "horario-comercial.js"
+    }
+  },
+  "author": "krossmasters",
+  "license": "MIT",
+  "dependencies": {
+	"request": "2.88.0",
+    "cookie": "0.4.1",
+	"mustache": "4.1.0",
+    "hash-sum": "2.0.0",
+	"querystring": "0.2.0"
+  }
+}

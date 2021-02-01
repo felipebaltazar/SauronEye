@@ -1,0 +1,177 @@
+
+<script type="text/html" data-help-name="enviar-sms">
+    <p>Um node simples para enviar SMS</p>
+</script>
+
+<script type="text/html" data-template-name="Enviar SMS">
+    <div class="form-row">
+        <label for="node-input-method"><i class="fa fa-tasks"></i> <span>Método</span></label>
+        <select type="text" id="node-input-method" style="width:70%;">
+        <option value="POST" selected>POST</option>
+        <option value="use" data-i18n="httpin.setby"></option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-globe"></i> <span>Url</span></label>
+        <input id="node-input-url" type="text" placeholder="https://sauroneye.com/sendsms">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-globe"></i> <span>Telefones</span></label>
+        <input id="node-input-url" type="text" placeholder="+55119199131439">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-globe"></i> <span>Texto</span></label>
+        <input id="node-input-url" type="text" placeholder="Server {{{server}}} disparou o alerta {{{alerta}}}">
+    </div>
+
+    
+    
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span>Name</span></label>
+        <input type="text" id="node-input-name" value="Enviar SMS">
+    </div>
+    
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('Enviar SMS',{
+        category: 'Básico',
+        color:"#d1928a",
+        defaults: {
+            name: {value:"Enviar SMS"},
+            method:{value:"GET"},
+            ret: {value:"txt"},
+            paytoqs: {value: false},
+            url:{value:"",validate:function(v) { return (v.trim().length === 0) || (v.indexOf("://") === -1) || (v.trim().indexOf("http") === 0)} },
+            tls: {type:"tls-config",required: false},
+            persist: {value:false},
+            proxy: {type:"http proxy",required: false},
+            authType: {value: ""}
+        },
+        credentials: {
+            user: {type:"text"},
+            password: {type: "password"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "comment.svg",
+        outputLabels: function(i) {
+            return ({
+                txt: this._("httpin.label.utf8String"),
+                bin: this._("httpin.label.binaryBuffer"),
+                obj: this._("httpin.label.jsonObject")
+            }[this.ret]);
+        },        
+        label: function() {
+            return this.name||"Enviar SMS";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $("#node-input-useAuth").on("change", function() {
+                if ($(this).is(":checked")) {
+                    $(".node-input-useAuth-row").show();
+                    // Nodes (< version 0.20.x) with credentials but without authentication type, need type 'basic'
+                    if (!$('#node-input-authType').val()) {
+                        $("#node-input-authType-select").val('basic').trigger("change");
+                    }
+                } else {
+                    $(".node-input-useAuth-row").hide();
+                    $('#node-input-authType').val('');
+                    $('#node-input-user').val('');
+                    $('#node-input-password').val('');
+                }
+            });
+            $("#node-input-authType-select").on("change", function() {
+                var val = $(this).val();
+                $("#node-input-authType").val(val);
+                if (val === "basic" || val === "digest") {
+                    $(".node-input-basic-row").show();
+                    $('#node-span-password').show();
+                    $('#node-span-token').hide();
+                } else if (val === "bearer") {
+                    $(".node-input-basic-row").hide();
+                    $('#node-span-password').hide();
+                    $('#node-span-token').show();
+                    $('#node-input-user').val('');
+                }
+            });
+            $("#node-input-method").on("change", function() {
+                if ($(this).val() == "GET") {
+                    $(".node-input-paytoqs-row").show();
+                } else {
+                    $(".node-input-paytoqs-row").hide();
+                }
+            });
+            if (this.paytoqs === true || this.paytoqs == "query") {
+                $("#node-input-paytoqs").val("query");
+            } else if (this.paytoqs === "body") {
+                $("#node-input-paytoqs").val("body");
+            } else {
+                $("#node-input-paytoqs").val("ignore");
+            }
+            if (this.authType) {
+                $('#node-input-useAuth').prop('checked', true);
+                $("#node-input-authType-select").val(this.authType);
+                $("#node-input-authType-select").change();
+            } else {
+                $('#node-input-useAuth').prop('checked', false);
+            }
+            $("#node-input-useAuth").change();
+
+            function updateTLSOptions() {
+                if ($("#node-input-usetls").is(':checked')) {
+                    $("#node-row-tls").show();
+                } else {
+                    $("#node-row-tls").hide();
+                }
+            }
+            if (this.tls) {
+                $('#node-input-usetls').prop('checked', true);
+            } else {
+                $('#node-input-usetls').prop('checked', false);
+            }
+            updateTLSOptions();
+            $("#node-input-usetls").on("click",function() {
+                updateTLSOptions();
+            });
+
+            function updateProxyOptions() {
+                if ($("#node-input-useProxy").is(":checked")) {
+                    $("#node-input-useProxy-row").show();
+                } else {
+                    $("#node-input-useProxy-row").hide();
+                }
+            }
+            if (this.proxy) {
+                $("#node-input-useProxy").prop("checked", true);
+            } else {
+                $("#node-input-useProxy").prop("checked", false);
+            }
+            updateProxyOptions();
+            $("#node-input-useProxy").on("click", function() {
+                updateProxyOptions();
+            });
+
+            $("#node-input-ret").on("change", function() {
+                if ($("#node-input-ret").val() === "obj") {
+                    $("#tip-json").show();
+                } else {
+                    $("#tip-json").hide();
+                }
+            });
+        },
+        oneditsave: function() {
+            if (!$("#node-input-usetls").is(':checked')) {
+                $("#node-input-tls").val("_ADD_");
+            }
+            if (!$("#node-input-useProxy").is(":checked")) {
+                $("#node-input-proxy").val("_ADD_");
+            }
+        }
+    });
+</script>
