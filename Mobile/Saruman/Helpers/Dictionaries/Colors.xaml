@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="Saruman.Helpers.Dictionaries.Colors"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Color.Background">#282728</Color>
+    <Color x:Key="Color.BackgroundLight">#E3DBD3</Color>
+    <Color x:Key="Color.P1">#E76858</Color>
+    <Color x:Key="Color.P2">#ED7E5C</Color>
+    <Color x:Key="Color.P3">#FBA164</Color>
+    <Color x:Key="Color.P4">#FDC36A</Color>
+    <Color x:Key="Color.Info">#6690F7</Color>
+    <Color x:Key="Color.Unknown">#8E9EAA</Color>
+    <Color x:Key="Color.LightText">#E2E1E2</Color>
+    <Color x:Key="Color.DarkText">#121B28</Color>
+    <Color x:Key="Color.GreenText">#63A78A</Color>
+    <Color x:Key="Color.RedText">#C1645B</Color>
+    <Color x:Key="Color.Placeholder">#7a7876</Color>
+    <Color x:Key="Color.EntryText">#121B28</Color>
+
+</ResourceDictionary>

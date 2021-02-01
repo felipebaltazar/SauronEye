@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Saruman.Pages.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="#806049"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="12"
+                VerticalOptions="Center">
+                <ffImageLoading:CachedImage
+                    Margin="0,0,0,150"
+                    HorizontalOptions="Center"
+                    Scale="4"
+                    Source="resource://Saruman.Resources.sauroneye_logo.png"
+                    VerticalOptions="StartAndExpand" />
+                <Frame
+                    Padding="4"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource Login.FieldFrame}"
+                    WidthRequest="240">
+                    <Entry Placeholder="Username" Style="{StaticResource Login.Entry}" />
+                </Frame>
+                <Frame
+                    Padding="4"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource Login.FieldFrame}"
+                    WidthRequest="240">
+                    <Entry
+                        HeightRequest="40"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        Style="{StaticResource Login.Entry}" />
+                </Frame>
+                <Button
+                    BackgroundColor="{StaticResource Color.Info}"
+                    Command="{Binding LoginCommand, Mode=OneTime}"
+                    CornerRadius="3"
+                    FontFamily="NexaBold"
+                    HeightRequest="48"
+                    HorizontalOptions="Center"
+                    Text="LOGIN"
+                    TextColor="{StaticResource Color.LightText}"
+                    WidthRequest="248" />
+                <Label
+                    Padding="0,12,0,0"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding IsDeepLink}"
+                    Style="{StaticResource Login.Warning}"
+                    Text="Faz o login para atender o incidente." />
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#66FFFFFF"
+                IsVisible="{Binding IsBusy}">
+                <ActivityIndicator
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,60,60"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    HeightRequest="60"
+                    IsRunning="True"
+                    WidthRequest="60"
+                    Color="{StaticResource Color.Info}" />
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

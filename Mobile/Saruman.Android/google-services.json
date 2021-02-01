@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "508396822333",
+    "project_id": "sauroneye-7c64f",
+    "storage_bucket": "sauroneye-7c64f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508396822333:android:f178efeae52ad0579caf54",
+        "android_client_info": {
+          "package_name": "com.sauroneye.saruman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508396822333-p5d378rqage3gl6m15d7eqcku70p4tti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1b4AfomfNWrwiXLeusTcJlw1UHOPIX5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508396822333-p5d378rqage3gl6m15d7eqcku70p4tti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

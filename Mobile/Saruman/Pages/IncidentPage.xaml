@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Saruman.Pages.IncidentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:vm="clr-namespace:Saruman.ViewModels"
+    x:Name="this"
+    x:DataType="vm:IncidentViewModel"
+    BackgroundColor="{StaticResource Color.Background}">
+
+    <Grid
+        Padding="0"
+        RowDefinitions="12, 30, 60, 2, *, 80, 80"
+        RowSpacing="0"
+        VerticalOptions="FillAndExpand">
+        <BoxView
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Color="{Binding Incident.Priority, Converter={StaticResource PriorityToColor}}" />
+        <svg:SvgCachedImage
+            Grid.Row="1"
+            Margin="0,0,12,0"
+            HeightRequest="30"
+            HorizontalOptions="End"
+            Source="resource://Saruman.Resources.ic_close_dark.svg"
+            VerticalOptions="Start"
+            WidthRequest="30">
+            <svg:SvgCachedImage.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CloseCommand}" />
+            </svg:SvgCachedImage.GestureRecognizers>
+        </svg:SvgCachedImage>
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Padding="0,0,0,12"
+            HorizontalOptions="Center"
+            Style="{StaticResource Priority}"
+            Text="{Binding Incident.Priority, Converter={StaticResource PriorityToDescription}}"
+            VerticalOptions="Center" />
+        <Grid
+            Grid.Row="4"
+            Padding="24,24,24,0"
+            ColumnDefinitions="*,20, *"
+            RowDefinitions="30, 40, 2, 50, Auto">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource InfoLabel}"
+                Text="Squad" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource Info}"
+                Text="{Binding Incident.Squad}" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="2"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource InfoLabel}"
+                Text="Id" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource Info}"
+                Text="{Binding Incident.IncidentId}" />
+            <BoxView
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                BackgroundColor="{StaticResource Color.BackgroundLight}" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Padding="0,16,0,0"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource Title}"
+                Text="{Binding Incident.Title}" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Padding="0,16,0,0"
+                Style="{StaticResource Description}"
+                Text="{Binding Incident.Description}" />
+        </Grid>
+        <Button
+            Grid.Row="5"
+            Grid.Column="0"
+            Margin="0,0,0,10"
+            BackgroundColor="{StaticResource Color.RedText}"
+            CornerRadius="0"
+            FontAttributes="Bold"
+            FontFamily="NexoBold"
+            FontSize="28"
+            Text="ESCALAR"
+            TextColor="{StaticResource Color.LightText}" />
+        <Button
+            Grid.Row="6"
+            Grid.Column="0"
+            Margin="0,0,0,10"
+            BackgroundColor="{StaticResource Color.GreenText}"
+            CornerRadius="0"
+            FontAttributes="Bold"
+            FontFamily="NexoBold"
+            FontSize="28"
+            Text="RESOLVER"
+            TextColor="{StaticResource Color.LightText}" />
+    </Grid>
+</ContentPage>

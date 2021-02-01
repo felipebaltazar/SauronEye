@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="Saruman.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Saruman.Helpers.Converters"
+    xmlns:dict="clr-namespace:Saruman.Helpers.Dictionaries">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <dict:Colors />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="Login.FieldFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource Color.BackgroundLight}" />
+                <Setter Property="BorderColor" Value="{StaticResource Color.P3}" />
+                <Setter Property="CornerRadius" Value="3" />
+                <Setter Property="IsClippedToBounds" Value="true" />
+            </Style>
+            <Style x:Key="Login.Entry" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="{StaticResource Color.Placeholder}" />
+                <Setter Property="TextColor" Value="{StaticResource Color.EntryText}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Color.BackgroundLight}" />
+                <Setter Property="FontFamily" Value="NexaLight" />
+            </Style>
+            <Style x:Key="Login.Warning" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Color.RedText}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontFamily" Value="NexaLight" />
+            </Style>
+            <Style x:Key="Priority" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaBold" />
+                <Setter Property="FontSize" Value="36" />
+                <Setter Property="TextColor" Value="{StaticResource Color.DarkText}" />
+            </Style>
+            <Style x:Key="PriorityShort" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaBold" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="{StaticResource Color.DarkText}" />
+            </Style>
+            <Style x:Key="InfoLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaLight" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource Color.LightText}" />
+            </Style>
+            <Style x:Key="Info" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaBold" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{StaticResource Color.LightText}" />
+            </Style>
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaBold" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="{StaticResource Color.LightText}" />
+            </Style>
+            <Style x:Key="Description" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaLight" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource Color.LightText}" />
+            </Style>
+            <Style x:Key="TitleSmall" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaBold" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource Color.LightText}" />
+            </Style>
+            <Style x:Key="DescriptionSmall" TargetType="Label">
+                <Setter Property="FontFamily" Value="NexaLight" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource Color.LightText}" />
+            </Style>
+
+            <converters:PriorityConverter
+                x:Key="PriorityToColor"
+                x:TypeArguments="Color"
+                InfoValue="{StaticResource Color.Info}"
+                P1Value="{StaticResource Color.P1}"
+                P2Value="{StaticResource Color.P2}"
+                P3Value="{StaticResource Color.P3}"
+                P4Value="{StaticResource Color.P4}"
+                UnknownValue="{StaticResource Color.Unknown}" />
+
+            <converters:PriorityConverter
+                x:Key="PriorityToDescription"
+                x:TypeArguments="x:String"
+                InfoValue="Information"
+                P1Value="P1 - Disaster"
+                P2Value="P2 - High"
+                P3Value="P3 - Average"
+                P4Value="P4 - Warning"
+                UnknownValue="Not classified" />
+
+            <converters:InvertBoolConverter x:Key="InvertBool" />
+
+            <converters:BoolConverter
+                x:Key="BoolToColor"
+                x:TypeArguments="Color"
+                FalseValue="{StaticResource Color.RedText}"
+                TrueValue="{StaticResource Color.GreenText}" />
+            <converters:BoolConverter
+                x:Key="BoolToText"
+                x:TypeArguments="x:String"
+                FalseValue="NO"
+                TrueValue="YES" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
